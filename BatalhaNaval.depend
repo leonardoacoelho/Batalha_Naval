@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1504026087 source:c:\users\leonardo abaque\desktop\batalhanaval\main.c
+	<stdio.h>
+	<time.h>
+	<stdlib.h>
+	<conio.h>
+	<string.h>
+
