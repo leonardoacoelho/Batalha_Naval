@@ -71,11 +71,11 @@ void SetPlayerShips(char mapFront[LINHAS][COLUNAS], char mapBack[LINHAS][COLUNAS
         if(y == 0)
             y = 1;
 
-        if(mapBack[x][y] != 'b')
+        if(mapBack[x][y] != 'B')
         {
             contador++;
-            mapFront[x][y] = 'b';
-            mapBack[x][y] = 'b';
+            mapFront[x][y] = 'B';
+            mapBack[x][y] = 'B';
         }
     }
 }
@@ -94,10 +94,10 @@ void SetBotShips(char mapBack[LINHAS][COLUNAS])
         if(y == 0)
             y = 1;
 
-        if(mapBack[x][y] != 'b')
+        if(mapBack[x][y] != 'B')
         {
             contador++;
-            mapBack[x][y] = 'b';
+            mapBack[x][y] = 'B';
         }
     }
 }
@@ -132,17 +132,17 @@ int AtirarPlayer()
     else
         return 4;
 
-    if(mapBackBot[x][y] == 'b')
+    if(mapBackBot[x][y] == 'B')
     {
-        mapBackBot[x][y] = 'x';
-        mapFrontBot[x][y] = 'x';
+        mapBackBot[x][y] = 'X';
+        mapFrontBot[x][y] = 'X';
 
         return 1;
     }
     else if (mapBackBot[x][y] == '~')
     {
-        mapBackBot[x][y] = 'o';
-        mapFrontBot[x][y] = 'o';
+        mapBackBot[x][y] = 'O';
+        mapFrontBot[x][y] = 'O';
 
         return 2;
     }
@@ -165,10 +165,10 @@ int AtirarBot()
         }
     }
 
-    if(mapBackPlayer[x][y] == 'b')
+    if(mapBackPlayer[x][y] == 'B')
     {
-        mapBackPlayer[x][y] = 'x';
-        mapFrontPlayer[x][y] = 'x';
+        mapBackPlayer[x][y] = 'X';
+        mapFrontPlayer[x][y] = 'X';
         tentativasBot[i] = mapBackPlayer[x][y];
         i++;
 
@@ -176,8 +176,8 @@ int AtirarBot()
     }
     else if (mapBackPlayer[x][y] == '~')
     {
-        mapBackPlayer[x][y] = 'o';
-        mapFrontPlayer[x][y] = 'o';
+        mapBackPlayer[x][y] = 'O';
+        mapFrontPlayer[x][y] = 'O';
         tentativasBot[i] = mapBackPlayer[x][y];
         i++;
 
