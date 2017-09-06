@@ -9,8 +9,8 @@
 char mapFrontPlayer[LINHAS][COLUNAS], mapFrontBot[LINHAS][COLUNAS];
 char mapBackPlayer[LINHAS][COLUNAS], mapBackBot[LINHAS][COLUNAS];
 
-int maxBarcos = 5, playerHit, botHit, playerShot, botShot, i = 0;
-int tentativasBot[100];
+int maxBarcos = 5, playerHit, botHit, playerShot, botShot, i = 0, j = 0;
+int tentativasBot[100], tentativasPlayer[100];
 
 void PrintMap(char mapa[LINHAS][COLUNAS])
 {
@@ -132,10 +132,21 @@ int AtirarPlayer()
     else
         return 4;
 
+    for(int saveI = 0; saveI <= j; saveI++)
+    {
+        if(tentativasPlayer[saveI] == mapFrontBot[x][y])
+        {
+            printf("Esta coordenada ja foi lançada, entre com um valida: ");
+            scanf("%s %d", &xS, &y);
+        }
+    }
+
     if(mapBackBot[x][y] == 'B')
     {
         mapBackBot[x][y] = 'X';
         mapFrontBot[x][y] = 'X';
+        tentativasPlayer[j] = mapFrontBot[x][y];
+        j++;
 
         return 1;
     }
@@ -143,6 +154,8 @@ int AtirarPlayer()
     {
         mapBackBot[x][y] = 'O';
         mapFrontBot[x][y] = 'O';
+        tentativasPlayer[j] = mapFrontBot[x][y];
+        j++;
 
         return 2;
     }
@@ -154,7 +167,11 @@ int AtirarBot()
 {
     srand(time(NULL));
     int x = rand() % LINHAS;
+    if(x == 0)
+        x = 1;
     int y = rand() % COLUNAS;
+    if(y == 0)
+        y = 1;
 
     for(int saveI = 0; saveI <= i; saveI++)
     {
@@ -207,7 +224,7 @@ int main()
     SetPlayerShips(mapFrontPlayer, mapBackPlayer);
     SetBotShips(mapBackBot);
 
-    while(playerHit < 5 || botHit < 5)
+    while(1)
     {
         Maps();
 
@@ -272,10 +289,14 @@ int main()
         }
 
         ClearScreen();
+
+        if(botHit == 5 || playerHit == 5)
+            break;
     }
     if(botHit == 5)
         printf("Que pena, voce perdeu!");
-    else
+    else if(playerHit == 5)
         printf("Parabens, voce afundou todas as embarcacoes inimigas!");
+
     return 0;
 }
